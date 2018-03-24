@@ -1,0 +1,157 @@
+###########################################################################
+# Makefile.sedumi
+# Include file for Make-utility, contains OS-independent Make-commands
+# for making sedumi. See Makefile and Makefile.mak for main makefiles.
+#
+# See the files `Install.unix' and 'Install.dos' for details.
+#
+# This file is part of SeDuMi 1.05
+# Copyright (C) 2001 Jos F. Sturm
+#   Dept. Econometrics & O.R., Tilburg University, the Netherlands.
+#   Supported by the Netherlands Organization for Scientific Research (NWO).
+# Affiliation SeDuMi 1.03 and 1.04Beta (2000):
+#   Dept. Quantitative Economics, Maastricht University, the Netherlands.
+# Affiliations up to SeDuMi 1.02 (AUG1998):
+#   CRL, McMaster University, Canada.
+#   Supported by the Netherlands Organization for Scientific Research (NWO).
+#
+###########################################################################
+
+#
+#############################################################
+# Define targets (the mex-files)
+#############################################################
+TARGETS1=ddot.$(ST) psdscale.$(ST) qblkmul.$(ST) \
+	adendotd.$(ST) adenscale.$(ST) \
+	eigK.$(ST) extractA.$(ST) eyeK.$(ST) psdfactor.$(ST) factorK.$(ST) findblks.$(ST) \
+	psdframeit.$(ST) qreshape.$(ST) psdinvjmul.$(ST) \
+	getada1.$(ST) getada2.$(ST) \
+	getada3.$(ST) givensrot.$(ST) incorder.$(ST) \
+	invcholfac.$(ST) iswnbr.$(ST) \
+	makereal.$(ST) partitA.$(ST) psdeig.$(ST) psdinvscale.$(ST) psdjmul.$(ST) \
+	qframev.$(ST) qinvsqrt.$(ST) qrK.$(ST) qscaleK.$(ST) quadadd.$(ST)\
+	sortnnz.$(ST) sqrtinv.$(ST) statsK.$(ST) triumtriu.$(ST) \
+	urotorder.$(ST) vecsym.$(ST) vectril.$(ST) whichcpx.$(ST)
+
+TARGETS2=dpr1fact.$(ST) finsymbden.$(ST) fwdpr1.$(ST) bwdpr1.$(ST)
+
+TARGETS3=ordmmdmex.$(ST) symfctmex.$(ST) choltmpsiz.$(ST) \
+	cholsplit.$(ST) symbbwblk.$(ST) symbfwblk.$(ST) \
+	blkchol.$(ST) fwblkslv.$(ST) bwblkslv.$(ST)
+
+TARGETS=$(TARGETS1) $(TARGETS2) $(TARGETS3)
+
+all: $(TARGETS)
+
+# Dependencies and commands:
+adendotd.$(ST): adendotd.c sdmauxCone.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) adendotd.c sdmauxCone.c
+adenscale.$(ST): adenscale.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) adenscale.c
+ddot.$(ST): ddot.c sdmauxCone.c sdmauxRdot.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) ddot.c sdmauxCone.c sdmauxRdot.c sdmauxScalarmul.c
+eigK.$(ST): eigK.c sdmauxCone.c sdmauxRdot.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) eigK.c sdmauxCone.c sdmauxRdot.c
+extractA.$(ST): extractA.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) extractA.c
+eyeK.$(ST): eyeK.c sdmauxCone.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) eyeK.c sdmauxCone.c
+factorK.$(ST): factorK.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) factorK.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c
+findblks.$(ST): findblks.c sdmauxCone.c sdmauxCmp.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) findblks.c sdmauxCone.c sdmauxCmp.c
+getada1.$(ST): getada1.c sdmauxFill.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) getada1.c sdmauxFill.c
+getada2.$(ST): getada2.c sdmauxCone.c sdmauxRdot.c sdmauxFill.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) getada2.c sdmauxCone.c sdmauxRdot.c sdmauxFill.c
+getada3.$(ST): getada3.c spscale.c sdmauxCone.c sdmauxRdot.c sdmauxScalarmul.c sdmauxCmp.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) getada3.c spscale.c sdmauxCone.c sdmauxRdot.c sdmauxScalarmul.c sdmauxCmp.c
+givensrot.$(ST): givensrot.c auxgivens.c sdmauxCone.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) givensrot.c auxgivens.c sdmauxCone.c
+incorder.$(ST): incorder.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) incorder.c
+invcholfac.$(ST): invcholfac.c triuaux.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c sdmauxScalarmul.c blkaux.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) invcholfac.c triuaux.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c sdmauxScalarmul.c blkaux.c
+psdinvscale.$(ST): psdinvscale.c triuaux.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) psdinvscale.c triuaux.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c
+iswnbr.$(ST): iswnbr.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) iswnbr.c
+makereal.$(ST): makereal.c sdmauxCone.c sdmauxCmp.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) makereal.c sdmauxCone.c sdmauxCmp.c
+partitA.$(ST): partitA.c sdmauxCmp.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) partitA.c sdmauxCmp.c
+psdeig.$(ST): psdeig.c sdmauxCone.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) psdeig.c sdmauxCone.c
+psdfactor.$(ST): psdfactor.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) psdfactor.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c
+psdframeit.$(ST): psdframeit.c reflect.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) psdframeit.c reflect.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c sdmauxScalarmul.c
+psdinvjmul.$(ST): psdinvjmul.c reflect.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c sdmauxScalarmul.c blkaux.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) psdinvjmul.c reflect.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c sdmauxScalarmul.c blkaux.c
+psdjmul.$(ST): psdjmul.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) psdjmul.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c
+qblkmul.$(ST): qblkmul.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) qblkmul.c sdmauxScalarmul.c
+qreshape.$(ST): qreshape.c sdmauxCone.c sdmauxCmp.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) qreshape.c sdmauxCone.c sdmauxCmp.c
+qframev.$(ST): qframev.c sdmauxCone.c sdmauxRdot.c sdmauxFill.c sdmauxScalarmul.c blkaux.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) qframev.c sdmauxCone.c sdmauxRdot.c sdmauxFill.c sdmauxScalarmul.c blkaux.c
+qinvsqrt.$(ST): qinvsqrt.c sdmauxCone.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) qinvsqrt.c sdmauxCone.c sdmauxScalarmul.c
+qrK.$(ST): qrK.c sdmauxCone.c sdmauxRdot.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) qrK.c sdmauxCone.c sdmauxRdot.c sdmauxScalarmul.c
+qscaleK.$(ST): qscaleK.c sdmauxCone.c sdmauxRdot.c sdmauxScalarmul.c blkaux.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) qscaleK.c sdmauxCone.c sdmauxRdot.c sdmauxScalarmul.c blkaux.c
+quadadd.$(ST): quadadd.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) quadadd.c
+sortnnz.$(ST): sortnnz.c sdmauxCmp.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) sortnnz.c sdmauxCmp.c
+sqrtinv.$(ST): sqrtinv.c sdmauxCone.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) sqrtinv.c sdmauxCone.c
+statsK.$(ST): statsK.c sdmauxCone.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) statsK.c sdmauxCone.c
+triumtriu.$(ST): triumtriu.c sdmauxCone.c sdmauxTriu.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) triumtriu.c sdmauxCone.c sdmauxTriu.c sdmauxScalarmul.c
+urotorder.$(ST): urotorder.c auxgivens.c sdmauxCone.c sdmauxTriu.c sdmauxRdot.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) urotorder.c auxgivens.c sdmauxCone.c sdmauxTriu.c sdmauxRdot.c
+vecsym.$(ST): vecsym.c sdmauxCone.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) vecsym.c sdmauxCone.c
+vectril.$(ST): vectril.c sdmauxCone.c sdmauxCmp.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) vectril.c sdmauxCone.c sdmauxCmp.c
+whichcpx.$(ST): whichcpx.c sdmauxCone.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) whichcpx.c sdmauxCone.c
+#
+dpr1fact.$(ST): dpr1fact.c auxfwdpr1.c sdmauxCone.c sdmauxCmp.c sdmauxFill.c sdmauxScalarmul.c sdmauxRdot.c blkaux.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) dpr1fact.c auxfwdpr1.c sdmauxCone.c  sdmauxCmp.c sdmauxFill.c sdmauxScalarmul.c sdmauxRdot.c blkaux.c
+finsymbden.$(ST): finsymbden.c sdmauxCmp.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) finsymbden.c sdmauxCmp.c
+fwdpr1.$(ST): fwdpr1.c auxfwdpr1.c sdmauxCone.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) fwdpr1.c auxfwdpr1.c sdmauxCone.c sdmauxScalarmul.c
+bwdpr1.$(ST): bwdpr1.c sdmauxCone.c sdmauxRdot.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) bwdpr1.c sdmauxCone.c sdmauxRdot.c
+#
+psdscale.$(ST): psdscale.c triuaux.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c sdmauxScalarmul.c blkaux.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) psdscale.c triuaux.c sdmauxCone.c sdmauxRdot.c sdmauxTriu.c sdmauxScalarmul.c blkaux.c
+#
+ordmmdmex.$(ST): ordmmdmex.c ordmmd.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) ordmmdmex.c ordmmd.c
+symfctmex.$(ST): symfctmex.c symfct.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) symfctmex.c symfct.c
+choltmpsiz.$(ST): choltmpsiz.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) choltmpsiz.c
+cholsplit.$(ST): cholsplit.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) cholsplit.c
+symbbwblk.$(ST): symbbwblk.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) symbbwblk.c
+symbfwblk.$(ST): symbfwblk.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) symbfwblk.c
+blkchol.$(ST): blkchol.c blkchol2.c sdmauxFill.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) blkchol.c blkchol2.c sdmauxFill.c sdmauxScalarmul.c
+fwblkslv.$(ST): fwblkslv.c sdmauxScalarmul.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) fwblkslv.c sdmauxScalarmul.c
+bwblkslv.$(ST): bwblkslv.c sdmauxFill.c sdmauxRdot.c
+	$(MEX) $(MEXOPTS) $(MEXFLAGS) bwblkslv.c sdmauxFill.c sdmauxRdot.c
+
+# To uninstall the mex-files, type "make clean"
+clean:
+	rm -f $(TARGETS)

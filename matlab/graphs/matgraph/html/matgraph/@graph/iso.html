@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of iso</title>
+  <meta name="keywords" content="iso">
+  <meta name="description" content="[yn,p] = iso(g,h) --- is g isomorphic to h?">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="../index.html">matgraph</a> &gt; <a href="index.html">@graph</a> &gt; iso.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for matgraph/@graph&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>iso
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>[yn,p] = iso(g,h) --- is g isomorphic to h?</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [yn,p] = iso(g,h) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> [yn,p] = iso(g,h) --- is g isomorphic to h?
+ Given graphs g and h, the function attempts to determine if g and h are
+ isomorphic by applying various heurisitcs. If it can determine the graphs
+ are not isomorphic, yn is set to 0. If it can determine the graphs are
+ isomorphic, yn is set to 1 and the isomophism (as a permutation object)
+ is returned in p. Otherwise, if the heuristics are inconclusive, yn is
+ set equal to 0.5.
+
+ When a permutation is found, then renumber(g,p) will be equal to h. If
+ the graphs are not isomorphic or if no isomorphism can be found, an empty
+ permutation is returned.
+
+ The heuristic approach here is not state of the art; actually, it's 
+ really quite bad. If the graphs are isomorphic with trivial automorphism
+ group, then this function is likely to find the isomorphism. 
+
+ Users are strongly encouraged to help create a better routine.</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="complement.html" class="code" title="function complement(g,h)">complement</a>	graph complement</li><li><a href="components.html" class="code" title="function p = components(g)">components</a>	components(g) --- find the components of the graph g</li><li><a href="copy.html" class="code" title="function copy(g,h)">copy</a>	copy(g,h) --- overwrite g with a copy of h</li><li><a href="deg.html" class="code" title="function d = deg(g,v)">deg</a>	deg: degree of a vertex or degree sequence</li><li><a href="free.html" class="code" title="function free(g)">free</a>	free(g) --- free the graph from the system</li><li><a href="full.html" class="code" title="function full(g)">full</a>	full(g) --- convert internal storage for g to full</li><li><a href="graph.html" class="code" title="function g = graph(n)">graph</a>	graph: constructor for the graph class</li><li><a href="laplacian.html" class="code" title="function m = laplacian(g)">laplacian</a>	laplacian(g) --- get the Laplacian matrix of g</li><li><a href="nv.html" class="code" title="function n = nv(g)">nv</a>	nv(g) --- number of vertices in g</li><li><a href="renumber.html" class="code" title="function renumber(g,perm)">renumber</a>	renumber the vertices of a graph</li><li><a href="size.html" class="code" title="function [sz,tz] = size(g)">size</a>	size(g) --- returns [nv,ne] for the graph</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [yn,p] = iso(g,h)</a>
+0002 <span class="comment">% [yn,p] = iso(g,h) --- is g isomorphic to h?</span>
+0003 <span class="comment">% Given graphs g and h, the function attempts to determine if g and h are</span>
+0004 <span class="comment">% isomorphic by applying various heurisitcs. If it can determine the graphs</span>
+0005 <span class="comment">% are not isomorphic, yn is set to 0. If it can determine the graphs are</span>
+0006 <span class="comment">% isomorphic, yn is set to 1 and the isomophism (as a permutation object)</span>
+0007 <span class="comment">% is returned in p. Otherwise, if the heuristics are inconclusive, yn is</span>
+0008 <span class="comment">% set equal to 0.5.</span>
+0009 <span class="comment">%</span>
+0010 <span class="comment">% When a permutation is found, then renumber(g,p) will be equal to h. If</span>
+0011 <span class="comment">% the graphs are not isomorphic or if no isomorphism can be found, an empty</span>
+0012 <span class="comment">% permutation is returned.</span>
+0013 <span class="comment">%</span>
+0014 <span class="comment">% The heuristic approach here is not state of the art; actually, it's</span>
+0015 <span class="comment">% really quite bad. If the graphs are isomorphic with trivial automorphism</span>
+0016 <span class="comment">% group, then this function is likely to find the isomorphism.</span>
+0017 <span class="comment">%</span>
+0018 <span class="comment">% Users are strongly encouraged to help create a better routine.</span>
+0019 
+0020 <span class="comment">%  basic tests</span>
+0021 
+0022 <span class="comment">% (0) check if the graphs are simply equal</span>
+0023 <span class="keyword">if</span> (g==h)
+0024     p = permutation(<a href="nv.html" class="code" title="function n = nv(g)">nv</a>(g));
+0025     yn = 1;
+0026     <span class="keyword">return</span>
+0027 <span class="keyword">end</span>
+0028 
+0029 
+0030 <span class="comment">% (1) number of vertices &amp; edges</span>
+0031 
+0032 <span class="keyword">if</span> any(<a href="size.html" class="code" title="function [sz,tz] = size(g)">size</a>(g) ~= <a href="size.html" class="code" title="function [sz,tz] = size(g)">size</a>(h))
+0033     yn = 0;
+0034     <span class="keyword">return</span>
+0035 <span class="keyword">end</span>
+0036 
+0037 <span class="comment">% (2) degreee sequences</span>
+0038 dg = sort(<a href="deg.html" class="code" title="function d = deg(g,v)">deg</a>(g));
+0039 dh = sort(<a href="deg.html" class="code" title="function d = deg(g,v)">deg</a>(h));
+0040 <span class="keyword">if</span> any(dg ~= dh) 
+0041     yn = 0;
+0042     <span class="keyword">return</span>
+0043 <span class="keyword">end</span>
+0044 
+0045 <span class="comment">% (3a) same number of connected components</span>
+0046 gc = <a href="components.html" class="code" title="function p = components(g)">components</a>(g);
+0047 hc = <a href="components.html" class="code" title="function p = components(g)">components</a>(h);
+0048 
+0049 <span class="keyword">if</span> np(gc) ~= np(hc)
+0050     yn = 0;
+0051     <span class="keyword">return</span>;
+0052 <span class="keyword">end</span>
+0053 
+0054 <span class="comment">% (3b) components must all have the same sizes</span>
+0055 gcp = parts(gc);
+0056 hcp = parts(hc);
+0057 
+0058 gx = zeros(1,np(gc));
+0059 gy = gx;
+0060 
+0061 <span class="keyword">for</span> k=1:np(gc)
+0062     gx(k) = length(gcp{k});
+0063     gy(k) = length(hcp{k});
+0064 <span class="keyword">end</span>
+0065 gx = sort(gx);
+0066 gy = sort(gy);
+0067 <span class="keyword">if</span> any(gx ~= gy)
+0068     yn = 0;
+0069     <span class="keyword">return</span>
+0070 <span class="keyword">end</span>
+0071 
+0072 
+0073 <span class="comment">% we now know that g and h have the same number of vertices and edges, have</span>
+0074 <span class="comment">% the same degree sequence, the same number of components, and the sizes of</span>
+0075 <span class="comment">% those components agree.</span>
+0076 
+0077 <span class="comment">% we now work on copies of g and h</span>
+0078 
+0079 G = <a href="graph.html" class="code" title="function g = graph(n)">graph</a>; <a href="copy.html" class="code" title="function copy(g,h)">copy</a>(G,g);
+0080 H = <a href="graph.html" class="code" title="function g = graph(n)">graph</a>; <a href="copy.html" class="code" title="function copy(g,h)">copy</a>(H,h);
+0081 
+0082 <span class="comment">% if the graphs are not connected, work on their complements.</span>
+0083 
+0084 <span class="keyword">if</span> (np(gc) &gt; 1)
+0085     <a href="complement.html" class="code" title="function complement(g,h)">complement</a>(G);
+0086     <a href="complement.html" class="code" title="function complement(g,h)">complement</a>(H);
+0087 <span class="keyword">end</span>
+0088 
+0089 Lg = <a href="full.html" class="code" title="function full(g)">full</a>(<a href="laplacian.html" class="code" title="function m = laplacian(g)">laplacian</a>(G));
+0090 Lh = <a href="full.html" class="code" title="function full(g)">full</a>(<a href="laplacian.html" class="code" title="function m = laplacian(g)">laplacian</a>(H));
+0091 
+0092 
+0093 [Vg, Dg] = eig(Lg);
+0094 [Vh, Dh] = eig(Lh);
+0095 
+0096 delta = sort(diag(Dg)) - sort(diag(Dh));
+0097 <span class="keyword">if</span> (norm(delta) &gt; 100*eps)
+0098     yn = 0;
+0099     <a href="free.html" class="code" title="function free(g)">free</a>(G);
+0100     <a href="free.html" class="code" title="function free(g)">free</a>(H);
+0101     <span class="keyword">return</span>;
+0102 <span class="keyword">end</span>
+0103 
+0104 Vg = Vg(:,2:end);
+0105 Vh = Vh(:,2:end);
+0106 
+0107 [X,idx1] = sortrows(Vg);
+0108 [X,idx2] = sortrows(Vh);
+0109 p1 = permutation(idx1);
+0110 p2 = permutation(idx2);
+0111 
+0112 yn = 0.5;
+0113 
+0114 p = p2*inv(p1);
+0115 
+0116 <a href="renumber.html" class="code" title="function renumber(g,perm)">renumber</a>(G,p)
+0117 <span class="keyword">if</span> (G==H)
+0118     <a href="free.html" class="code" title="function free(g)">free</a>(G)
+0119     <a href="free.html" class="code" title="function free(g)">free</a>(H)
+0120     yn = 1;
+0121     <span class="keyword">return</span>
+0122 <span class="keyword">end</span>
+0123 
+0124 Vh = -Vh;
+0125 
+0126 
+0127 [X,idx1] = sortrows(Vg);
+0128 [X,idx2] = sortrows(Vh);
+0129 p1 = permutation(idx1);
+0130 p2 = permutation(idx2);
+0131 
+0132 p = p2*inv(p1);
+0133 
+0134 <a href="copy.html" class="code" title="function copy(g,h)">copy</a>(G,g)
+0135 <a href="renumber.html" class="code" title="function renumber(g,perm)">renumber</a>(G,p)
+0136 <span class="keyword">if</span> (G==H)
+0137     yn = 1;
+0138 <span class="keyword">else</span>
+0139     yn = 0.5;
+0140     p = permutation(0);
+0141 <span class="keyword">end</span>
+0142 <a href="free.html" class="code" title="function free(g)">free</a>(G)
+0143 <a href="free.html" class="code" title="function free(g)">free</a>(H)
+0144 
+0145 
+0146 
+0147 
+0148</pre></div>
+<hr><address>Generated on Wed 11-Oct-2006 09:58:34 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

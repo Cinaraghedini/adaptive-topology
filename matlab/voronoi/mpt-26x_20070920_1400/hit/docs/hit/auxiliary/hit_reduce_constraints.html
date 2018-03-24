@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of hit_reduce_constraints</title>
+  <meta name="keywords" content="hit_reduce_constraints">
+  <meta name="description" content="HIT_REDUCE_CONSTRAINTS Estimate regions from hyperplanes and a bounding polytope.">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="../index.html">hit</a> &gt; <a href="index.html">auxiliary</a> &gt; hit_reduce_constraints.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for hit/auxiliary&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>hit_reduce_constraints
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>HIT_REDUCE_CONSTRAINTS Estimate regions from hyperplanes and a bounding polytope.</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [estimated_regions,adjacences,adjacences_hyp]=hit_reduce_constraints(sep_hyp, Bigregion,solver) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">HIT_REDUCE_CONSTRAINTS Estimate regions from hyperplanes and a bounding polytope.
+
+ -------------------------------------------------------------------------
+ DESCRIPTION
+ -------------------------------------------------------------------------
+ [estimated_regions,adjacences,adjacences_hyp]=...
+ hit_reduce_constraints(sep_hyp, Bigregion,solver)
+
+ -------------------------------------------------------------------------
+ INPUT
+ -------------------------------------------------------------------------
+ sep_hyp{i,j} stores the hyperplane separating the i-th and j-th mode
+ datasets according to the formula sep_hyp{i,j}*[x  1]=0. By convention,
+ sep_hyp{i,i}=[0 .. 0] thus defining a fictious hyperplane.
+ Bigregion: bounding polytope containing the regions (usually the
+ regressor set).
+ solver: defines the solver to be used in mpt_solveLPs (called by
+ polyreduce_ext.m)
+
+ -------------------------------------------------------------------------
+ OUTPUT
+ -------------------------------------------------------------------------
+ estimated_regions(i): polytope defining the i-th region.
+ adjacences: each row is a pair (i,j), i&lt;j indicating that the regions i
+ and j are adjacent The constraint i&lt;j avoids storing both pairs (i,j) and
+ (j,i).
+ adjacences_hyp: each row contains the vector [w b] of the hyperplane
+ separating region i from region j (the regions are stored in the
+ corresponding row of adjacences) according to the formula [w b]*[x,1]'=0.</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="polyreduce_ext.html" class="code" title="function [At,Bt,how,left_constr]=polyreduce_ext(A,B,solver)">polyreduce_ext</a>	POLYREDUCE_EXT Remove redundant constraints in polytopes.</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Thu 01-Dec-2005 10:54:38 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

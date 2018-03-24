@@ -1,0 +1,100 @@
+Some references for the algorithms implemented:
+
+MAIN ALGORITHM, using Feature Vectors (FV)
+
+@ARTICLE{FTMLM03,
+  author = {Ferrari-Trecate, G. and Muselli, M. and Liberati, D. and Morari, M.},
+  title = {A clustering technique for the identification of piecewise affine and hybrid systems},
+  journal = {Automatica},
+  year = {2003},
+  volume = {39},
+  pages = {205-217},
+  abstract = {We propose a new technique for the identification of discrete-time hybrid systems in
+     the Piece-Wise Affine (PWA) form. This problem can be formulated
+     as the reconstruction of a possibly discontinuous PWA map with a
+     multi-dimensional domain. In order to achieve our goal, we provide
+     an algorithm that exploits the combined use of clustering, linear
+     identification, and pattern recognition techniques. This allows to
+     identify both the affine submodels and the polyhedral partition of the
+     domain on which each submodel is valid avoiding gridding procedures.
+     Moreover, the clustering step (used for classifying the datapoints) is
+     performed in a suitably defined feature space which allows also to
+     reconstruct different submodels that share the same coefficients but are
+     defined on different regions. Measures of confidence on the samples
+     are introduced and exploited in order to improve the performance
+     of both the clustering and the final linear regression procedure. }
+}
+
+MAIN ALGORITHM, using Local Parameter Vectors
+
+@ARTICLE{FMLM01,
+  author = {Ferrari-Trecate, G. and Muselli, M. and Liberati, D. and Morari, M.},
+  title = {Identification of Piecewise Affine and Hybrid Systems},
+  journal = {Proc. American Control Conference},
+  year = {2001},
+  volume = {5},
+  pages = {3521-3526},
+  note = {Arlington (VA), US.},
+  abstract = {In this paper we focus on the
+     identification of discrete-time hybrid systems in the Piece-Wise Affine
+     (PWA) form. This problem can be formulated as the reconstruction of a
+     possibly discontinuous PWA map with a multi-dimensional domain. In
+     order to achieve our goal, we propose an algorithm that exploits the
+     combined use of clustering, linear identification, and classification
+     techniques. This allows to identify both the affine submodels and the
+     polyhedral partition of the domain on which each submodel is valid.},
+}
+
+SINGLE-LINKAGE CLUSTERING
+
+@ARTICLE{FTM03,
+  author = {Ferrari-Trecate, G. and Muselli, M.},
+  title = {Single-linkage clustering for optimal classification in piecewise affine regression},
+  journal = {IFAC Conference on the Analysis and Design of Hybrid Systems (ADHS 03)},
+  year = {2003},
+  mytype = {referred conference},
+  abstract = {When performing regression with
+     piecewise affine maps, the most challenging task is to classify the
+     data points, i.e. to correctly attribute a data point to the affine
+     submodel that most likely generated it. In this paper, we consider a
+     regression scheme similar to the one proposed in (Ferrari-Trecate et al.,
+     2001,2003) that reduces the classification step to a clustering problem
+     in presence of outliers. However, instead of the K-means procedure
+     adopted in (Ferrari-Trecate et al., 2001,2003), we propose the use of
+     single-linkage clustering that estimates automatically the number of
+     submodels composing the piecewise affine map. Moreover we prove that,
+     under mild assumptions on the data set, single-linkage clustering
+     can guarantee optimal classification in presence of bounded noise. },
+}
+
+
+DETECTION OF MIXED LOCAL DATASET 
+
+
+@INCOLLECTION{FTS03,
+  author = {Ferrari-Trecate, G. and Schinkel, M.},
+  title = {Conditions of Optimal Classification for Piecewise Affine Regression},
+  booktitle = {Proc. 6th International Workshop on Hybrid Systems: Computation and Control},
+  publisher = {Springer-Verlag},
+  year = {2003},
+  editor = {O. Maler AND A. Pnueli},
+  volume = {2623},
+  series = {Lecture Notes in Computer Science},
+  pages = {188-202},
+  abstract = {We consider regression problems with
+     piecewise affine maps. In particular, we focus on the sub-problem of
+     classifying the datapoints, i.e. correctly attributing a datapoint to
+     the affine submodel that most likely generated it. Then, we analyze
+     the regression algorithm proposed by Ferrari-Trecate et. al (2003)
+     and show that, under suitable assumptions on the dataset and the
+     weights of the classification procedure, optimal classification can be
+     guaranteed in presence of bounded noise. We also relax such assumptions
+     by introducing and characterizing the property of weakly optimal
+     classification. Finally, by elaborating on these concepts, we propose a
+     procedure for detecting, a posteriori, misclassified datapoints.},
+}
+
+
+
+
+

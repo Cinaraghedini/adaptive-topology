@@ -1,0 +1,97 @@
+Welcome to SeDuMi 1.05 !
+
+***
+Below are the installation instructions for DOS workstations/PCs
+(NTwin95/98/200/XP/etc). The instructions for UNIX systems are in Install.unix.
+***
+
+Before proceeding, please make sure that you
+own a copy of MATLAB Version 5 or later. If you
+want to (re)build the dll's yourself, then you also
+need a C-compiler that can work with the MATLAB
+mex-compiler (e.g. MINGW, MicroSoft (Visual) C(++) or GNU gcc).
+NOTE: Mingw is a 95/98 implementation of GNU gcc, and is available
+from  http://www.mingw.org/index.shtml
+The DLL-files in this distribution were compiled using MINGW.
+
+1A) UNPACKING (COMPILED VERSION)
+Extract SeDuMi105DOS.zip to the root-directory of the MATLAB Toolboxes,
+e.g. c:\MATLAB\toolbox\
+(You may use e.g. the winzip utility to do this.)
+(Instead of c:\MATLAB you may have C:\Windows\Application Data\Mathworks\Matlab)
+
+==> NOTE: for the (non-compiled) developers version, refer to 1B-4B below.
+
+5) UPDATE MATLAB'S STARTUP SETTINGS (ALL VERSIONS)
+Now you have to let MATLAB know where to find SeDuMi105.
+To get SeDuMi105 in your search path (as a toolbox), update `matlabrc.m'
+file in your %MATLABROOT%\toolbox\local\ directory.
+At the bottom of this file, append the lines
+
+MATLABROOT = 'c:\matlab\';
+addpath([MATLABROOT 'toolbox\SeDuMi105',...
+         MATLABROOT 'toolbox\SeDuMi105\conversion']);
+
+
+That's it!  Simply startup Matlab, and type
+% help SeDuMi105
+to see your new user functions, and
+% help sedumi
+to get started with the solver. Again, beware of the Upper and lower case !
+
+In the directory SeDuMi105/, there are 3 example files, viz.
+  SeDuMi105/afiro.mat   a tiny feasible LP problem from the NETLIB test set
+  SeDuMi105/forest6.mat a tiny infeasible LP problem from the NETLIB test set
+  SeDuMi105/truss1.mat  a tiny Semi-definite programming problem from the
+                        NYU test set.
+
+In the directory SeDuMi105/doc/, you find a tutorial, called `guide.ps'.
+
+=================d e v e l o p e r s======================================
+1B) UNPACKING (NON-COMPILED DEVELOPERS VERSION)
+Extract SeDuMi105.tar.gz to the root-directory of the MATLAB Toolboxes,
+e.g. c:\MATLAB\toolbox\
+(You may use e.g. the winzip utility to do this.)
+(Instead of c:\MATLAB you may have C:\Windows\Application Data\Mathworks\Matlab)
+
+2B) SET UP MEX (NON-COMPILED DEVELOPERS VERSION ONLY)
+ If you have NOT used the mex-compiler before, then from within MATLAB,
+ issue the command
+
+ >> mex -setup
+
+ and answer the questions to install MATLAB with your C-compiler.
+ If you like to use the free GNU gcc compiler, please refer to
+   http://www.mrc-cbu.cam.ac.uk/Imaging/gnumex20.html
+ This URL was adviced to me by Dan Scholnik (Naval Res. Lab.).
+
+3B) SET THE MATLABROOT AND MATLAB VARIABLES (DEVELOPERS)
+ Start the program "MS-DOS Prompt", and issue the command
+
+ SET MATLABROOT=C:\MATLAB
+
+ (But then with the directory in which you installed the MATLAB 5 software.)
+ Then define MATLAB to be synonymous to MATLABROOT (this variable is used
+ by a certain script by The Mathworks, Inc.)
+
+ SET MATLAB=%MATLABROOT%
+
+4B) COMPILE C-SOURCE INTO MEX-FILES (DEVELOPERS)
+Now you still have to translate the C-source into dll-files that can
+be invoked from within Matlab. Still at the MS-DOS Prompt, issue
+
+ cd %MATLABROOT%\toolbox\SeDuMi105              (go to SeDuMi105-directory)
+ nmake -f Makefile.mak                          (Compile C-source into .dll)
+
+If this produces "Bad command or file name", then
+a) when using MicroSoft C, you have to add the bin-directory of MicroSoft C
+ to you search path, using the path-command.
+b) when using a different C-compiler, simply try "make -f Makefile.mak",
+ i.e. use the command "make" instead of "nmake".
+
+If your make utility chokes on the "include Makefile.sedumi", then include this
+file into Makefile.mak by hand.
+=============================================d e v e l o p e r s==========
+
+==========> L e t   Se Du Mi   s e d u c e   y o u   t o o   ! <==========
+Jos F. Sturm, October 2001.

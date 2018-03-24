@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of hit_plot_clust</title>
+  <meta name="keywords" content="hit_plot_clust">
+  <meta name="description" content="HIT_PLOT_CLUST Plot clusters, cluster centers and outliers">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="../index.html">hit</a> &gt; <a href="index.html">plotting</a> &gt; hit_plot_clust.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for hit/plotting&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>hit_plot_clust
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>HIT_PLOT_CLUST Plot clusters, cluster centers and outliers</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function hit_plot_clust(xi,cent,inlp,class_inl,markers,fig) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">HIT_PLOT_CLUST Plot clusters, cluster centers and outliers
+
+ -------------------------------------------------------------------------
+ DESCRIPTION
+ -------------------------------------------------------------------------
+
+ hit_plot_clust(xi,cent,inlp,class_inl,markers,fig)
+ 
+ -------------------------------------------------------------------------
+ INPUT
+ -------------------------------------------------------------------------
+ xi: matrix of xi-points to be plot. Each point is a row
+ 
+ cent(i:): center of the i-th cluster.
+
+ inlp: indexes of xi-points that are inliers. If inl(j)=i this means that
+ xi(i,:) is an inlier. 
+
+ class_inl: classification of the inliers. If class_inl(j)=i this means
+ that xi(inl(j),:) is in the i-th cluster.
+
+ markers: string of colored markers for plotting points belonging to
+ different clusters.
+
+ fig: (optional) # of the figure displaying the plot.
+
+ -------------------------------------------------------------------------
+ OUTPUT                                                                                                   
+ -------------------------------------------------------------------------
+ (none)</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Thu 01-Dec-2005 10:54:38 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

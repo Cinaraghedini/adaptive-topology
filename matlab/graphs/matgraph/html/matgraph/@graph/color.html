@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of color</title>
+  <meta name="keywords" content="color">
+  <meta name="description" content="color(g,algo) --- color the graph g by a given algorithm">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="../index.html">matgraph</a> &gt; <a href="index.html">@graph</a> &gt; color.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for matgraph/@graph&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>color
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>color(g,algo) --- color the graph g by a given algorithm</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function p = color(g,algo,max_time) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> color(g,algo) --- color the graph g by a given algorithm
+ The algorithms are as follows:
+ 'greedy':     the default, puts vertices in descending order of degree 
+               and runs sequential coloring
+ 'rs':         random sequence, puts vertices in random order and 
+               runs sequential coloring
+ 'repeat':     runs the 'rs' algorithm repeatedly until a fixed amount
+               of time passes (30 seconds); this can also be called as
+               color(g,'repeat',max_time)
+ 'optimal':    always finds a minimum coloring (slow on large graphs)
+
+ Algorithms rs, repeat, and optimal coded by Brian Towne.</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="deg.html" class="code" title="function d = deg(g,v)">deg</a>	deg: degree of a vertex or degree sequence</li><li><a href="neighbors.html" class="code" title="function nlist = neighbors(g,v)">neighbors</a>	neighbors(g,v) --- neighbors of v as a list.</li><li><a href="nv.html" class="code" title="function n = nv(g)">nv</a>	nv(g) --- number of vertices in g</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="cdraw.html" class="code" title="function cdraw(g,coloring,line_style)">cdraw</a>	cdraw(g,coloring) -- draw g with a given vertex coloring</li></ul>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function p = greedy_color(g)</a></li><li><a href="#_sub2" class="code">function p = rs_color(g,max_colors)</a></li><li><a href="#_sub3" class="code">function p = repeat(g,max_time)</a></li><li><a href="#_sub4" class="code">function p = optimal_color(g)</a></li><li><a href="#_sub5" class="code">function p = complete_extend(g,v,colors,best)</a></li><li><a href="#_sub6" class="code">function p = sequential_color(g,vlist,max_colors)</a></li></ul>
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function p = color(g,algo,max_time)</a>
+0002 <span class="comment">% color(g,algo) --- color the graph g by a given algorithm</span>
+0003 <span class="comment">% The algorithms are as follows:</span>
+0004 <span class="comment">% 'greedy':     the default, puts vertices in descending order of degree</span>
+0005 <span class="comment">%               and runs sequential coloring</span>
+0006 <span class="comment">% 'rs':         random sequence, puts vertices in random order and</span>
+0007 <span class="comment">%               runs sequential coloring</span>
+0008 <span class="comment">% 'repeat':     runs the 'rs' algorithm repeatedly until a fixed amount</span>
+0009 <span class="comment">%               of time passes (30 seconds); this can also be called as</span>
+0010 <span class="comment">%               color(g,'repeat',max_time)</span>
+0011 <span class="comment">% 'optimal':    always finds a minimum coloring (slow on large graphs)</span>
+0012 <span class="comment">%</span>
+0013 <span class="comment">% Algorithms rs, repeat, and optimal coded by Brian Towne.</span>
+0014 
+0015 <span class="keyword">if</span> nargin &lt;= 1
+0016     algo = <span class="string">'greedy'</span>;
+0017 <span class="keyword">end</span>
+0018 
+0019 
+0020 <span class="keyword">if</span> strcmp(algo,<span class="string">'greedy'</span>)
+0021     p = <a href="#_sub1" class="code" title="subfunction p = greedy_color(g)">greedy_color</a>(g);
+0022     <span class="keyword">return</span>
+0023 <span class="keyword">else</span> <span class="keyword">if</span> strcmp(algo,<span class="string">'rs'</span>)
+0024     p = <a href="#_sub2" class="code" title="subfunction p = rs_color(g,max_colors)">rs_color</a>(g);
+0025     <span class="keyword">return</span>
+0026 <span class="keyword">else</span> <span class="keyword">if</span> strcmp(algo,<span class="string">'repeat'</span>)
+0027     <span class="keyword">if</span> nargin &lt;=2
+0028         max_time = 30;
+0029     <span class="keyword">end</span>
+0030     p = <a href="#_sub3" class="code" title="subfunction p = repeat(g,max_time)">repeat</a>(g,max_time);
+0031     <span class="keyword">return</span>
+0032 <span class="keyword">else</span> <span class="keyword">if</span> strcmp(algo,<span class="string">'optimal'</span>)
+0033     p = <a href="#_sub4" class="code" title="subfunction p = optimal_color(g)">optimal_color</a>(g);
+0034     <span class="keyword">return</span>
+0035 <span class="keyword">end</span>
+0036 <span class="keyword">end</span>
+0037 <span class="keyword">end</span>
+0038 <span class="keyword">end</span>
+0039 
+0040 
+0041 
+0042 error([<span class="string">'Algorithm &quot;'</span>, algo, <span class="string">'&quot; not implemented'</span>]);
+0043 
+0044 
+0045 
+0046 <a name="_sub1" href="#_subfunctions" class="code">function p = greedy_color(g)</a>
+0047 
+0048 n = <a href="nv.html" class="code" title="function n = nv(g)">nv</a>(g);
+0049 d = <a href="deg.html" class="code" title="function d = deg(g,v)">deg</a>(g);
+0050 [dd,vlist] = sort(-d);
+0051 clear dd;
+0052 p = <a href="#_sub6" class="code" title="subfunction p = sequential_color(g,vlist,max_colors)">sequential_color</a>(g,vlist,n);
+0053 <span class="keyword">return</span>
+0054 
+0055 
+0056 
+0057 <a name="_sub2" href="#_subfunctions" class="code">function p = rs_color(g,max_colors)</a>
+0058 <span class="comment">% Random sequence</span>
+0059 
+0060 n = <a href="nv.html" class="code" title="function n = nv(g)">nv</a>(g);
+0061 <span class="keyword">if</span> nargin &lt;= 1
+0062     max_colors = n;
+0063 <span class="keyword">end</span>
+0064 vlist = randperm(n);
+0065 p = <a href="#_sub6" class="code" title="subfunction p = sequential_color(g,vlist,max_colors)">sequential_color</a>(g,vlist,max_colors);
+0066 <span class="keyword">return</span>
+0067 
+0068 
+0069 
+0070 <a name="_sub3" href="#_subfunctions" class="code">function p = repeat(g,max_time)</a>
+0071 <span class="comment">% Starts w/ greedy coloring, then loops through random permutations</span>
+0072 <span class="comment">% until it finds an optimal coloring.</span>
+0073 
+0074 tic;
+0075 n = <a href="nv.html" class="code" title="function n = nv(g)">nv</a>(g);
+0076 p = <a href="#_sub1" class="code" title="subfunction p = greedy_color(g)">greedy_color</a>(g);
+0077 max_colors = np(p)-1;
+0078 <span class="keyword">while</span> (toc &lt; max_time)
+0079     temp = <a href="#_sub2" class="code" title="subfunction p = rs_color(g,max_colors)">rs_color</a>(g,max_colors);
+0080     <span class="keyword">if</span> ~ (np(temp)==0) <span class="comment">% if rs_color returned w/o exhausting max_colors</span>
+0081         p = temp;
+0082         max_colors = np(p)-1;
+0083     <span class="keyword">end</span>
+0084 <span class="keyword">end</span>
+0085 <span class="keyword">return</span>
+0086 
+0087 
+0088 
+0089 <a name="_sub4" href="#_subfunctions" class="code">function p = optimal_color(g)</a>
+0090 <span class="comment">% Finds a minimum coloring for g. Works by calling complete_extend.</span>
+0091 
+0092 n = <a href="nv.html" class="code" title="function n = nv(g)">nv</a>(g);
+0093 p = <a href="#_sub1" class="code" title="subfunction p = greedy_color(g)">greedy_color</a>(g);
+0094 p = <a href="#_sub5" class="code" title="subfunction p = complete_extend(g,v,colors,best)">complete_extend</a>(g,1,zeros(1,n),p);
+0095 <span class="keyword">return</span>
+0096 
+0097 
+0098 
+0099 <a name="_sub5" href="#_subfunctions" class="code">function p = complete_extend(g,v,colors,best)</a>
+0100 <span class="comment">% Recursive function. Loops through every possible color for a given vertex.</span>
+0101 <span class="comment">% p is the current coloring. best is the best coloring found thus far.</span>
+0102 
+0103 n = <a href="nv.html" class="code" title="function n = nv(g)">nv</a>(g);
+0104 vneig = <a href="neighbors.html" class="code" title="function nlist = neighbors(g,v)">neighbors</a>(g,v);  <span class="comment">% neighbors of v</span>
+0105 cneig = unique(colors(vneig));  <span class="comment">% colors on neighbors</span>
+0106 avail = setdiff(1:min(v,np(best)-1),cneig); <span class="comment">% colors available</span>
+0107 <span class="keyword">for</span> k=avail
+0108     colors(v)=k;
+0109     <span class="keyword">if</span> v == n
+0110         mc = max(colors);
+0111         cpart = cell(1,mc);
+0112         <span class="keyword">for</span> k=1:mc
+0113             cpart{k} = find(colors==k);
+0114         <span class="keyword">end</span>
+0115         p = partition(cpart);
+0116         <span class="keyword">if</span> np(p) &lt; np(best)
+0117             best = p;
+0118         <span class="keyword">end</span>
+0119     <span class="keyword">else</span>
+0120         best = <a href="#_sub5" class="code" title="subfunction p = complete_extend(g,v,colors,best)">complete_extend</a>(g,v+1,colors,best);
+0121     <span class="keyword">end</span>
+0122 <span class="keyword">end</span>
+0123 p = best;
+0124 <span class="keyword">return</span>
+0125 
+0126 
+0127 
+0128 <a name="_sub6" href="#_subfunctions" class="code">function p = sequential_color(g,vlist,max_colors)</a>
+0129 <span class="comment">% Runs sequential coloring on vertices in order of vlist</span>
+0130 <span class="comment">% Exits if it uses more than max_colors. Setting max_colors = nv(g)</span>
+0131 <span class="comment">% means this will never happen.</span>
+0132 
+0133 n = <a href="nv.html" class="code" title="function n = nv(g)">nv</a>(g);
+0134 colors = zeros(1,n);
+0135 
+0136 <span class="comment">% scan vertices by order in vlist</span>
+0137 <span class="keyword">for</span> k=1:n
+0138     v = vlist(k);
+0139     vneig = <a href="neighbors.html" class="code" title="function nlist = neighbors(g,v)">neighbors</a>(g,v);  <span class="comment">% neighbors of v</span>
+0140     cneig = unique(colors(vneig));  <span class="comment">% colors on neighbors</span>
+0141     <span class="keyword">if</span> length(cneig) == 0
+0142         mc = 0;
+0143     <span class="keyword">else</span>
+0144         mc = cneig(length(cneig)); <span class="comment">% max color seen on neighbors</span>
+0145     <span class="keyword">end</span>
+0146     avail = setdiff(1:mc,cneig); <span class="comment">% colors available (if any)</span>
+0147     <span class="keyword">if</span> isempty(avail)
+0148         <span class="keyword">if</span> mc+1 &gt; max_colors <span class="comment">% if max_colors is exhausted, exit</span>
+0149             p = partition(0);
+0150             <span class="keyword">return</span>
+0151         <span class="keyword">else</span>
+0152             colors(v) = mc+1;
+0153         <span class="keyword">end</span>
+0154     <span class="keyword">else</span>
+0155         colors(v) = min(avail);
+0156     <span class="keyword">end</span>
+0157 <span class="keyword">end</span>
+0158 
+0159 mc = max(colors);
+0160 cpart = cell(1,mc);
+0161 <span class="keyword">for</span> k=1:mc
+0162     cpart{k} = find(colors==k);
+0163 <span class="keyword">end</span>
+0164 p = partition(cpart);
+0165 <span class="keyword">return</span>
+0166</pre></div>
+<hr><address>Generated on Wed 11-Oct-2006 09:58:34 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

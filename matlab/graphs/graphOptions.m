@@ -1,0 +1,9 @@
+options = set_matlab_bgl_default();
+options.algname = 'auto';
+options.istrans = 0;
+options.nosparse = 1;
+options.nocheck = 0;
+options.full2sparse = 1;
+options.inf = inf;
+options.unweighted = 0; 
+options.unweightedDeg = 0; 

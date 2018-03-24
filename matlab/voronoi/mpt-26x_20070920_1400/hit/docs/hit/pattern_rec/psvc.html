@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of psvc</title>
+  <meta name="keywords" content="psvc">
+  <meta name="description" content="PSVC Proximal Support Vector Classification">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="../index.html">hit</a> &gt; <a href="index.html">pattern_rec</a> &gt; psvc.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for hit/pattern_rec&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>psvc
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>PSVC Proximal Support Vector Classification</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [w,gamma, trainCorr, testCorr, cpu_time, nu]=psvc(A,d,k,nu,output,bal); </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">  PSVC Proximal Support Vector Classification
+===============================================================================
+ Usage:    [w,gamma,trainCorr, testCorr,cpu_time,nu]=psvc(A,d,k,nu,output,bal)
+
+ A and d are both required, everything else has a default
+ An example: [w gamma train test time nu] = psvm(A,d,10);
+
+ Input:
+ A is a matrix containing m data in n dimensions each.
+ d is a m dimensional vector of 1's or -1's containing
+ the corresponding labels for each example in A.
+ k is k-fold for correctness purpose
+ nu - the weighting factor.
+                       -1 - easy estimation
+                       0  - hard estimation
+                       any other value - used as nu by the algorithm
+                       default - 0
+ output - indicates whether you want output
+
+ If the input parameter bal is 1
+ the algorithm weighs the classes depending on the
+ number of points in each class and balance them. 
+ It is useful when  the number of point in each class
+ is very unbalanced.
+
+ Output:
+ w,gamma are the values defining the separating
+ Hyperplane w'x-gamma=0 such that:
+
+ w'x-gamma&gt;0 =&gt; x belongs to A+
+ w'x-gamma&lt;0  =&gt; x belongs to A-
+ w'x-gamma=0 =&gt; x can belongs to both classes
+ nu - the estimated or specified value of nu
+
+ For details refer to the paper:
+ &quot;Proximal Support Vector Machine Classifiers&quot;
+ available at: www.cs.wisc.edu/~gfung
+ For questions or suggestions, please email:
+ Glenn Fung, gfung@cs.wisc.edu
+ Sept 2001.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="hit_prec_PSVC.html" class="code" title="function [sep_hyp,spec]=hit_prec_PSVC(X_or,F,s)">hit_prec_PSVC</a>	HIT_PREC_PSVC Compute mode regions through Proximal Support Vector Classification (PSVC)</li></ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Thu 01-Dec-2005 10:54:38 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

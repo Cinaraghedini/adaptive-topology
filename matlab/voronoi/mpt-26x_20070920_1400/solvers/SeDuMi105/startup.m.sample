@@ -1,0 +1,29 @@
+function startup
+%STARTUP Matlab startup-routine..
+%   Sets additional search path to Toolboxes that are
+%   specific to me as a user.
+
+ %  
+ %   This file is part of SeDuMi 1.05
+ %   Copyright (C) 2001 Jos F. Sturm
+ %     Dept. Econometrics & O.R., Tilburg University, the Netherlands.
+ %     Supported by the Netherlands Organization for Scientific Research (NWO).
+ %   Affiliation SeDuMi 1.03 and 1.04Beta (2000):
+ %     Dept. Quantitative Economics, Maastricht University, the Netherlands.
+ %   Affiliations up to SeDuMi 1.02 (AUG1998):
+ %     CRL, McMaster University, Canada.
+ %     Supported by the Netherlands Organization for Scientific Research (NWO).
+ % 
+ %   This program is free software; you can redistribute it and/or modify
+ %   it under the terms of the GNU General Public License as published by
+ %   the Free Software Foundation; either version 2 of the License, or
+ %   (at your option) any later version.
+
+% Put the directory from where you startup Matlab below
+% (you obviously have to make changes !):
+
+MLHOME = '/home/sturm/matlab/';
+
+% Now, this should make SeDuMi accessible:
+ addpath([MLHOME 'SeDuMi105:'],...
+         [MLHOME 'SeDuMi105/conversion:']);

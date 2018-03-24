@@ -1,0 +1,88 @@
+Welcome to SeDuMi 1.05 !
+
+***
+Below are the installation instructions for UNIX workstations
+(Linux, SunOS, hp900, dec-alpha, ibm-rs, sgi). The instructions for
+DOS/Windows systems (NT/win95/98/2000/XP/etc) are in Install.dos.
+***
+
+Before proceeding, please make sure that you
+own a copy of MATLAB Version 5 or later.
+
+1) UNPACKING
+Go to the directory from which you always start Matlab, say ~/matlab.
+(But it may also be your home directory ~/)
+
+% cd ~/matlab                   (assuming that it's called `matlab')
+
+The following two lines unpack SeDuMi104, and place it in a subdirectory
+called `SeDuMi105'
+
+% gunzip SeDuMi105.tar.gz          (Beware of Upper and lower case !)
+% tar -xvf SeDuMi105.tar
+
+2) EDIT MAKEFILE
+ Edit ./SeDuMi105/Makefile (using e.g. emacs or vi), locate the lines
+
+# The USER should provide the root directory of the MATLAB installation:
+MATLABROOT=/usr/local/matlab
+
+Replace the path '/usr/local/matlab' by the location of the MATLAB 5 software
+on your filesystem. Consult your system administrator if you are not sure of
+the correct path.
+
+Then locate the sequence of out-commented lines, starting with
+
+#EXARCH=sol                        # Sun (sun4, sol2)
+
+and remove the prefixed "#" (comment symbol) at the line that describes your
+system. If you are not sure, just try the Makefile as it is.
+
+TROUBLESHOOTING:
+If there are problems with the compiler, then locate the line
+MEXOPTS=
+and supply a reference to a mexopts.sh file that is adapted to your
+system.  (Typically, Matlab refers to some commercial compiler by
+default, whereas many systems have a GNU gcc compiler instead.)
+
+If there are problems with the makefile then locate its last line, i.e.
+
+include Makefile.sedumi
+
+If your make utility does not support "include", then remove this line
+and insert the file "Makefile.sedumi" on this position yourself.
+
+3) COMPILE C-SOURCE INTO MEX-FILES
+Now you still have to translate the C-source into mex-files that can
+be invoked from within Matlab:
+
+% cd SeDuMi105
+% make
+% cd ..
+
+4) UPDATE MATLAB'S STARTUP SETTINGS
+Now you have to let MATLAB know where to find SeDuMi105.
+To get SeDuMi105 in your search path (as a toolbox), update your `startup.m'
+file in your ~/matlab directory.   A sample of `startup.m' is located in
+`~/matlab/SeDuMi105/startup.m.sample'.
+(If you don't want to edit startup.m right now, you can simply run Matlab,
+ from your ~/matlab directory, and issue the command
+             % addpath SeDuMi105
+ within MATLAB, which makes the subdirectory SeDuMi105 known.)
+
+That's it!  Simply startup Matlab, and type
+% help SeDuMi105
+to see your new user functions, and
+% help sedumi
+to get started with the solver. Again, beware of the Upper and lower case !
+
+In the directory SeDuMi105/, there are 3 example files, viz.
+  SeDuMi105/afiro.mat   a tiny feasible LP problem from the NETLIB test set
+  SeDuMi105/forest6.mat a tiny infeasible LP problem from the NETLIB test set
+  SeDuMi105/truss1.mat  a tiny Semi-definite programming problem from the
+                        NYU test set.
+
+In the directory SeDuMi105/doc/, you find a tutorial, called `guide.ps'.
+
+==========> L e t   Se Du Mi   s e d u c e   y o u   t o o   ! <==========
+Jos F. Sturm, October 2001.

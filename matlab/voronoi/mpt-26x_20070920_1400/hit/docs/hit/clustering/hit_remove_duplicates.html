@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of hit_remove_duplicates</title>
+  <meta name="keywords" content="hit_remove_duplicates">
+  <meta name="description" content="HIT_REMOVE_DUPLICATES Remove duplicates of xi-points before clustering.">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="../index.html">hit</a> &gt; <a href="index.html">clustering</a> &gt; hit_remove_duplicates.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for hit/clustering&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>hit_remove_duplicates
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>HIT_REMOVE_DUPLICATES Remove duplicates of xi-points before clustering.</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [topreserve,isequalto]=hit_remove_duplicates(LDs,xi) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">HIT_REMOVE_DUPLICATES Remove duplicates of xi-points before clustering.
+
+ -------------------------------------------------------------------------
+ DESCRIPTION
+ -------------------------------------------------------------------------
+
+ [topreserve,isequalto]=hit_remove_duplicates(LDs,xi)
+ 
+ -------------------------------------------------------------------------
+ INPUT
+ -------------------------------------------------------------------------
+ LDs: structure containing information about local datasets (LDs)
+ and local models
+
+    LDs.X{i}:  matrix of regressors belonging to the i-th local dataset
+    (each row is a point).
+   LDs.y{i}: vector of outputs belonging to the i-th local dataset.
+   LDs.pos{i}: vector of indexes of datapoints in the i-th local
+   dataset, e.g. Xid(LDs.pos{i}(1),:) is the first regressor in the i-th
+   LD. 
+   LDs.weights{i} weight associated to the i-th datapoint used in
+   weighted LS for computing mode PVs. 
+   LDs.meanX{i} average of regressors in the i-th local dataset. 
+   LDs.models{i} parameters of the i-th local model.
+   LDs.models_var{i} INVERSE variance of the i-th local model.
+   LDs.X_ivar{i} INVERSE of the variance of the the regressors in the
+   i-th LD.Xid: matrix containing the datapoints in the regressor set.
+       Each row is a datapoint.
+
+ xi: structure containing information about the xi-points (they are either
+ FVs or LPVs).
+
+    xi.points{i}: xi-point based on the i-th LDs.
+   xi.IR{i}: INVERSE of the covariance of the i-th xi-point.
+   xi.weights{i}: scalar confidence measure of the i-th feature vector.
+
+ -------------------------------------------------------------------------
+ OUTPUT                                                                                                   
+ -------------------------------------------------------------------------
+ topreserve: indexes of xi-points that must be preserved.
+ isequalto{i}: indexes of xi-points that are equal to the point indexed by
+ topreserve(i). It can be an empty vector (if a point does not have
+ duplicates)</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Thu 01-Dec-2005 10:54:38 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

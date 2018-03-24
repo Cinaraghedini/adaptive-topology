@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of hit_regression</title>
+  <meta name="keywords" content="hit_regression">
+  <meta name="description" content="HIT_REGRESSION Main function for PWA regression.">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../index.html">Home</a> &gt;  <a href="index.html">hit</a> &gt; hit_regression.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../index.html"><img alt="<" border="0" src="../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for hit&nbsp;<img alt=">" border="0" src="../right.png"></a></td></tr></table>-->
+
+<h1>hit_regression
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>HIT_REGRESSION Main function for PWA regression.</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function [idmodes,F,xi,LDs,inliers]=hit_regression(Xid,yid) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment">HIT_REGRESSION Main function for PWA regression.
+
+ -------------------------------------------------------------------------
+ DESCRIPTION
+ -------------------------------------------------------------------------
+
+ [idmodes,F,xi,LDs,inliers]=hit_regression(Xid,yid)
+ 
+ -------------------------------------------------------------------------
+ INPUT
+ -------------------------------------------------------------------------
+ Xid: matrix containing the regressors. Each row is a datapoint.
+
+ yid: column vector containing the output datapoints.
+
+ -------------------------------------------------------------------------
+ OUTPUT                                                                                                   
+ -------------------------------------------------------------------------
+ idmodes: structure containing all information on the identified models.
+
+   idmodes.par{i}: is the PVs of the i-th mode.
+   idmodes.regions(i): is the region of the i-th mode. Regions are
+   subsets of idpar.Regressor_set. 
+   idmodes.cov{i}; is the covariance of the PV of the i-th mode. 
+   idmodes.Regressor_set: automatically computed polytope defining the
+   regressor set. This field is present only if idpar.Regressor_set is
+   empty or nonexistent.    
+   idmodes.s: meaningful number of modes estimated during regression (it
+   might differ from idpar.s).
+   idmodes.regions_sim(i): is the region for simulating the i-th mode.
+   These regions are subsets of idpar.Regressor_set_sim and are defined
+   only if idpar.Regressor_set_sim is defined.
+   idmodes.stat_reattr: fraction of points reattribted to modes, if
+   reattribution has been performed.
+   idmodes.clust_valid: structure containing information about the
+   clustering results.
+   idmodes.pattern_rec_valid: structure containing information about the
+   pattern recognition results.
+   idmodes.Weight_primal: weights used in creating LDs (usually it is a
+   vector of 1's) 
+   idmodes.adjacences: each row is a pair (i,j), i&lt;j indicating that the
+   regions i and j are adjacent The constraint i&lt;j avoids storing both
+   pairs (i,j) and (j,i).
+ F: structure containing information about the mode datasets (the
+ classified datapoints that are also inliers, i.e. not discarded during
+ regression).
+
+   F.X{i}: matrix of regressors assigned to the i-th mode dataset.
+   F.y: cell array: F.y{i} vector of outputs assigned to the i-th mode
+   dataset. 
+   F.pos{i}: indexes of the points assigned to the i-th mode dataset. 
+   F.pos{i}(1)=5 means that Xid(5,:) and yid(5) are the first points
+   composing the i-th mode dataset.
+
+ xi: structure containing information about the xi-points (they are either
+ FVs or LPVs).
+
+    xi.points{i}: xi-point based on the i-th LDs.
+   xi.IR{i}: INVERSE of the covariance of the i-th xi-point.
+   xi.weights{i}: scalar confidence measure of the i-th feature vector.
+
+ LDs: structure containing information about local datasets (LDs)
+ and local models
+
+    LDs.X{i}:  matrix of regressors belonging to the i-th local dataset
+    (each row is a point).
+   LDs.y{i}: vector of outputs belonging to the i-th local dataset.
+   LDs.pos{i}: vector of indexes of datapoints in the i-th local
+   dataset, e.g. Xid(LDs.pos{i}(1),:) is the first regressor in the i-th
+   LD. 
+   LDs.weights{i} weight associated to the i-th datapoint used in
+   weighted LS for computing mode PVs. 
+   LDs.meanX{i} average of regressors in the i-th local dataset. 
+   LDs.models{i} parameters of the i-th local model.
+   LDs.models_var{i} INVERSE variance of the i-th local model.
+   LDs.X_ivar{i} INVERSE of the variance of the the regressors in the
+   i-th LD.
+
+ inliers: structure containing information on the inliers
+
+    inliers.pos(j): index of the j-th inlier in Xid and yid
+    (i.e.Xid(inliers.pos(j),:) and yid(inliers.pos(j)) are the j-th
+    inliers).
+   inliers.class(j): classification of the j-th inlier.</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="hit_attribute_outliers.html" class="code" title="">hit_attribute_outliers</a>	HIT_ATTRIBUTE_OUTLIERS Attribute outliers to the modes and update inliers accordingly</li><li><a href="hit_check_inliers.html" class="code" title="function [inliers_new,s_new]=hit_check_inliers(inliers,s,ndim)">hit_check_inliers</a>	HIT_CHECK_INLIERS Remove modes, if necessary, from a list of inliers</li><li><a href="hit_compute_cont_modes.html" class="code" title="function [final_models_cont]=hit_compute_cont_modes(F,ndata,s,weig,adjacences,adjacences_hyp)">hit_compute_cont_modes</a>	HIT_COMPUTE_CONT_MODES Estimate the mode PVs in continuous PWA models</li><li><a href="hit_compute_disc_modes.html" class="code" title="function [final_models,final_Variances,Weight_primal]=hit_compute_disc_modes(F,ndata,weig)">hit_compute_disc_modes</a>	HIT_COMPUTE_DISC_MODES Estimate the mode PVs in discontinuous PWA models</li><li><a href="hit_create_LDs.html" class="code" title="function LDs=hit_create_LDs(Xid,yid,Weight_primal)">hit_create_LDs</a>	HIT_CREATE_LDS Create Local Datasets (LDs)</li><li><a href="hit_error.html" class="code" title="function hit_error">hit_error</a>	HIT_ERROR: Initializes the HIT toolbox if not already done</li><li><a href="hit_plotpar_check.html" class="code" title="function hit_plotpar_check(lfields)">hit_plotpar_check</a>	HIT_PLOTPAR_CHECK Check if the cell array of fields lfields in plotpar is well defined</li><li><a href="hit_reattribute_suspected.html" class="code" title="">hit_reattribute_suspected</a>	HIT_REATTRIBUTE_SUSPECTED Re-attribute inliers suspected to be mixed to the modes</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="hit_estimate_cs.html" class="code" title="function [best_s,best_c, mse_m]=hit_estimate_cs(Xid,yid,Xv,yv,c_test,s_test)">hit_estimate_cs</a>	HIT_ESTIMATE_CS Estimate the best mode number and/or the best size of LDs within a given range</li></ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Thu 01-Dec-2005 10:54:38 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

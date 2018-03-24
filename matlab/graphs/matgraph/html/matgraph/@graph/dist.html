@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of dist</title>
+  <meta name="keywords" content="dist">
+  <meta name="description" content="dist(g,v,w) and dist(g,v) --- find distance(s) between vertices">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="../index.html">matgraph</a> &gt; <a href="index.html">@graph</a> &gt; dist.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for matgraph/@graph&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>dist
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>dist(g,v,w) and dist(g,v) --- find distance(s) between vertices</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function d = dist(g,v,w) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> dist(g,v,w) and dist(g,v) --- find distance(s) between vertices
+ The form dist(g,v,w) finds the distance between vertices v and w.
+ The form dist(g,v) returns a vector distance from v to all other vertices
+ in the graph.
+ The form dist(g) returns an n-by-n matrix whose ij entry is the distance
+ between vertices i and j.
+
+ The code for all pairs shortest distance was written by Michael Kleder
+ and found on the Mathwork's MATLAB Central file exchange.</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="bfstree.html" class="code" title="function bfstree(t,g,v)">bfstree</a>	bfstree(t,g,v) --- create a breadth-first spanning tree of g</li><li><a href="find_path.html" class="code" title="function p = find_path(g,u,v)">find_path</a>	find_path(g,u,v) --- find a shortest path from u to v</li><li><a href="free.html" class="code" title="function free(g)">free</a>	free(g) --- free the graph from the system</li><li><a href="full.html" class="code" title="function full(g)">full</a>	full(g) --- convert internal storage for g to full</li><li><a href="graph.html" class="code" title="function g = graph(n)">graph</a>	graph: constructor for the graph class</li><li><a href="matrix.html" class="code" title="function A = matrix(g)">matrix</a>	matrix(g) --- return (a copy of) the adjacency matrix of g</li><li><a href="nv.html" class="code" title="function n = nv(g)">nv</a>	nv(g) --- number of vertices in g</li><li><a href="size.html" class="code" title="function [sz,tz] = size(g)">size</a>	size(g) --- returns [nv,ne] for the graph</li><li><a href="sparse.html" class="code" title="function sparse(g)">sparse</a>	sparse(g) --- convert internal storage for g to sparse</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="diam.html" class="code" title="function d = diam(g)">diam</a>	diam(g) --- return the diameter of g: the length of a longest shortest</li><li><a href="distxy.html" class="code" title="function e = distxy(g)">distxy</a>	distxy(g) -- give g a distance based embedding</li></ul>
+<!-- crossreference -->
+
+<h2><a name="_subfunctions"></a>SUBFUNCTIONS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="#_sub1" class="code">function B = allspath(A)</a></li></ul>
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function d = dist(g,v,w)</a>
+0002 <span class="comment">% dist(g,v,w) and dist(g,v) --- find distance(s) between vertices</span>
+0003 <span class="comment">% The form dist(g,v,w) finds the distance between vertices v and w.</span>
+0004 <span class="comment">% The form dist(g,v) returns a vector distance from v to all other vertices</span>
+0005 <span class="comment">% in the graph.</span>
+0006 <span class="comment">% The form dist(g) returns an n-by-n matrix whose ij entry is the distance</span>
+0007 <span class="comment">% between vertices i and j.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% The code for all pairs shortest distance was written by Michael Kleder</span>
+0010 <span class="comment">% and found on the Mathwork's MATLAB Central file exchange.</span>
+0011 
+0012 
+0013 <span class="keyword">if</span> nargin == 3
+0014     p = <a href="find_path.html" class="code" title="function p = find_path(g,u,v)">find_path</a>(g,v,w);
+0015     <span class="keyword">if</span> isempty(p)
+0016         d = inf;
+0017     <span class="keyword">else</span>
+0018         d = length(p)-1;
+0019     <span class="keyword">end</span>
+0020     <span class="keyword">return</span>
+0021 <span class="keyword">end</span>
+0022 
+0023 n = <a href="nv.html" class="code" title="function n = nv(g)">nv</a>(g);
+0024 
+0025 
+0026 <span class="keyword">if</span> nargin==1
+0027     d = <a href="#_sub1" class="code" title="subfunction B = allspath(A)">allspath</a>(<a href="matrix.html" class="code" title="function A = matrix(g)">matrix</a>(g));
+0028     <span class="keyword">return</span>
+0029 <span class="keyword">end</span>
+0030 
+0031 
+0032 
+0033 d = ones(1,n) * Inf;
+0034 
+0035 <span class="keyword">if</span> (v&lt;0) | (v&gt;n)
+0036     <span class="keyword">return</span>
+0037 <span class="keyword">end</span>
+0038 
+0039 d(v) = 0;
+0040 d = d';
+0041 
+0042 t = <a href="graph.html" class="code" title="function g = graph(n)">graph</a>;
+0043 <a href="bfstree.html" class="code" title="function bfstree(t,g,v)">bfstree</a>(t,g,v);
+0044 <a href="sparse.html" class="code" title="function sparse(g)">sparse</a>(t);
+0045 
+0046 vec = zeros(n,1);
+0047 vec(v) = 1;
+0048 A = double(<a href="matrix.html" class="code" title="function A = matrix(g)">matrix</a>(t));
+0049 vec_sum = sum(vec);
+0050 
+0051 <span class="keyword">for</span> k=1:n
+0052     vec2 = A*vec &gt; 0;
+0053     vec2 = vec2 &amp; (d==Inf);
+0054     d(vec2) = k;
+0055     vec = vec2 + vec &gt; 0;
+0056     new_vec_sum = sum(vec);
+0057     <span class="keyword">if</span> (new_vec_sum == vec_sum)
+0058         <span class="keyword">break</span>;
+0059     <span class="keyword">else</span>
+0060         vec_sum = new_vec_sum;
+0061     <span class="keyword">end</span>
+0062 <span class="keyword">end</span>
+0063 d = d';
+0064 <a href="free.html" class="code" title="function free(g)">free</a>(t);    
+0065 
+0066 
+0067 <span class="comment">% this subroutine was written by Michael Kleder and was found on The</span>
+0068 <span class="comment">% Mathwork's MATLAB Central file exchange.</span>
+0069 
+0070 <a name="_sub1" href="#_subfunctions" class="code">function B = allspath(A)</a>
+0071 B=<a href="full.html" class="code" title="function full(g)">full</a>(double(A));
+0072 B(B==0)=Inf;
+0073 C=ones(<a href="size.html" class="code" title="function [sz,tz] = size(g)">size</a>(B));
+0074 iter=0;
+0075 <span class="keyword">while</span> any(C(:))
+0076     C=B;
+0077     B=min(B,squeeze(min(repmat(B,[1 1 length(B)])+<span class="keyword">...</span>
+0078         repmat(permute(B,[1 3 2]),[1 length(B) 1]),[],1)));
+0079     C=B-C;
+0080 <span class="keyword">end</span>
+0081 B(logical(eye(length(B))))=0;
+0082 <span class="keyword">return</span></pre></div>
+<hr><address>Generated on Wed 11-Oct-2006 09:58:34 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

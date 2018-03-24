@@ -1,0 +1,32 @@
+---------------
+ACKNOWLEDGMENTS
+---------------
+
+Some .m functions of the HIT toolbox have been adapted from existing ones
+written by different people. 
+
+As a general rule, if a function name does not begin with "hit_" it
+is mainly the work of other researchers.
+
+In particular, let me acknowledge:
+
+- Steve Gunn. The svc.m code has been adapted from Steve's "MATLAB Support
+  Vector Machine Toolbox"
+  http://www.isis.ecs.soton.ac.uk/resources/svminfo/
+
+- Glenn Fung. The psvc.m code is its psvm.m file downloadable at 
+  http://www.cs.wisc.edu/dmi/svm/
+
+- Ian Nabney and all the people working on the NetLab toolbox.
+  The code of the modified kmeans algorithm is based on the kmeans.m routine of
+  NetLab
+
+- All the people at ETH that contributed in developing early algorithms for PWA    systems. In particular A. Bemporad, F. Borrelli D. Mignone and F. Torrisi.
+  Some pieces of their code are used for plotting regions and reducing
+  constraints.
+
+- All the people at ETH that developed the MPT toolbox. I have learned
+  a lot on MatLab programming from their work ! A special thank goes to Michal 
+  Kvasnica for testing early versions of HIT and for promoting the integration
+  with MPT.
+ 

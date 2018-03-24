@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of svc</title>
+  <meta name="keywords" content="svc">
+  <meta name="description" content="SVC Support Vector Classification">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="../index.html">hit</a> &gt; <a href="index.html">pattern_rec</a> &gt; svc.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for hit/pattern_rec&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>svc
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>SVC Support Vector Classification</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [nsv, alpha, b0] = svc(X,Y,ker,C,solver) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">  SVC Support Vector Classification
+
+  Usage: [nsv alpha bias] = svc(X,Y,ker,C)
+
+  Parameters: X      - Training inputs
+              Y      - Training targets
+              ker    - kernel function
+              C      - upper bound (non-separable case)
+              nsv    - number of support vectors
+              alpha  - Lagrange Multipliers
+              b0     - bias term
+
+  Author: Steve Gunn (srg@ecs.soton.ac.uk), modified by Giancarlo
+  Ferrari-Trecate for using the solver for QPs in MPT</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="nobias.html" class="code" title="function nb = nobias(ker)">nobias</a>	NOBIAS Returns true if SVM kernel has no implicit bias</li><li><a href="svc.html" class="code" title="function [nsv, alpha, b0] = svc(X,Y,ker,C,solver)">svc</a>	SVC Support Vector Classification</li><li><a href="svkernel.html" class="code" title="function k = svkernel(ker,u,v)">svkernel</a>	SVKERNEL Kernel for Support Vector Methods</li><li><a href="svtol.html" class="code" title="function tol = svtol(C)">svtol</a>	SVTOL Tolerance for Support Vectors</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="hit_prec_SVC.html" class="code" title="function [sep_hyp,spec]=hit_prec_SVC(X_or,F,s)">hit_prec_SVC</a>	HIT_PREC_SVC Compute mode regions through Support Vector Classification (SVC)</li><li><a href="svc.html" class="code" title="function [nsv, alpha, b0] = svc(X,Y,ker,C,solver)">svc</a>	SVC Support Vector Classification</li></ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Thu 01-Dec-2005 10:54:38 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>

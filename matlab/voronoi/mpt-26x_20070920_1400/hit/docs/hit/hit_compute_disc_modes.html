@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of hit_compute_disc_modes</title>
+  <meta name="keywords" content="hit_compute_disc_modes">
+  <meta name="description" content="HIT_COMPUTE_DISC_MODES Estimate the mode PVs in discontinuous PWA models">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../index.html">Home</a> &gt;  <a href="index.html">hit</a> &gt; hit_compute_disc_modes.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../index.html"><img alt="<" border="0" src="../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for hit&nbsp;<img alt=">" border="0" src="../right.png"></a></td></tr></table>-->
+
+<h1>hit_compute_disc_modes
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>HIT_COMPUTE_DISC_MODES Estimate the mode PVs in discontinuous PWA models</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function [final_models,final_Variances,Weight_primal]=hit_compute_disc_modes(F,ndata,weig) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment">HIT_COMPUTE_DISC_MODES Estimate the mode PVs in discontinuous PWA models 
+
+ -------------------------------------------------------------------------
+ DESCRIPTION
+ -------------------------------------------------------------------------
+ [final_models,final_Variances,final_Variances_denormaliz,Weight_primal]=...
+ hit_compute_disc_modes(F,ndata,weig)
+
+ -------------------------------------------------------------------------
+ INPUT
+ -------------------------------------------------------------------------
+ F: structure containing information about the mode datasets, see
+ hit_regression.m
+ ndata: total number of datapoints.
+ weigh(i): weight of the i-th datapoint used in weighted LS for estimating
+ the mode PVs.
+ -------------------------------------------------------------------------
+ OUTPUT                                                                                                   
+ -------------------------------------------------------------------------
+ final_models(i,:) estimted PV of the i-th mode. 
+ final_Variances{i}: variance of the i-th mode PV.
+ Weight_primal(i): if present returns the weight associated to the i-th
+ datapoint that should be used in building LDs. This is an experimental
+ feature currently not used for building LDs.</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="hit_regression.html" class="code" title="function [idmodes,F,xi,LDs,inliers]=hit_regression(Xid,yid)">hit_regression</a>	HIT_REGRESSION Main function for PWA regression.</li></ul>
+<!-- crossreference -->
+
+
+
+<hr><address>Generated on Thu 01-Dec-2005 10:54:38 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/">m2html</a></strong> &copy; 2003</address>
+</body>
+</html>
