@@ -2,10 +2,10 @@
 Approach to providing more efficient network topologies regarding connectivity maintenance, robustness to failures and area coverage. 
 
 # Title
-A model for e?cient adaptive ad-hoc multi-robot network topologies
+A model for efficient adaptive ad-hoc multi-robot network topologies
 
 ## Description
-This research proposes a model that aims at providing more e?cient network topologies addressing the issues of connectivity maintenance, collision avoidance, robustness to failure and area coverage improvement.
+This research proposes a model that aims at providing more efficient network topologies addressing the issues of connectivity maintenance, collision avoidance, robustness to failure and area coverage improvement.
 
 ## Package Information
 
