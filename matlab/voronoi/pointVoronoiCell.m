@@ -38,7 +38,7 @@ occurences=[];
 
 % computese the number of occurences of each vertice
 for i=1:size(u,1)
-    n=length(find(ismemberf(vxyI(:,1:2),u(i,1:2),'rows', 'tol', param.tol)));
+    n=length(find(ismemberf(vxyI(:,1:2),u(i,1:2),'row', 'tol', param.tol)));
     occurences=[occurences;u(i,:) n];
 end
 
@@ -54,11 +54,11 @@ end
 % for each unique vertices finds the vertice it is connected to
 uniqueRef=[]; 
 for i=1:size(uniquePoints,1) 
-    pos = find(ismemberf(vxy(:,1:2),uniquePoints(i,1:2),'rows', 'tol',param.tol)); 
+    pos = find(ismemberf(vxy(:,1:2),uniquePoints(i,1:2),'row', 'tol',param.tol)); 
     if ~isempty(pos)
         uniqueRef=[uniqueRef; uniquePoints(i,1:2)  vxy(pos,3:4)];
     end
-    pos = find(ismemberf(vxy(:,3:4),uniquePoints(i,1:2),'rows', 'tol', param.tol));
+    pos = find(ismemberf(vxy(:,3:4),uniquePoints(i,1:2),'row', 'tol', param.tol));
     if ~isempty(pos)
         uniqueRef=[uniqueRef; uniquePoints(i,1:2)  vxy(pos,1:2)];
     end
@@ -91,6 +91,9 @@ for i=1:size(C,1) % For each voronoi cell
                predecessorInf=verticesPosition(2,:); %reference point
                if (size(verticesPosition,1)==2) %if there are only two vertices and one inf
                     verticesPosition=defineNewCell2Points(position(i,:),uniqueRef,verticesPosition,predecessorInf,posInf,'first');
+                    
+                 %   defineNewCell2Points(position,uniqueRef,verticesPosition,nonInfPosition,posInf,infID)
+                    
                     if ~isempty(verticesPosition) % if it was possible to find a polygon with the available information set it as newPoint 
                         [newPoint newVertices] = createCellPoints(verticesPosition,newVertices,param);
                     end                    

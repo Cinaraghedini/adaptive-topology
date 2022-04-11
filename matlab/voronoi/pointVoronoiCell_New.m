@@ -21,7 +21,7 @@ u=unique(vxyI(:,1:2),'rows');
 occurences=[];
 
 for i=1:size(u,1)
-    n=length(find(ismemberf(vxyI(:,1:2),u(i,1:2),'rows', 'tol', param.tol)));
+    n=length(find(ismemberf(vxyI(:,1:2),u(i,1:2),'row', 'tol', param.tol)));
     occurences=[occurences;u(i,:) n];
 end
 
@@ -32,11 +32,11 @@ end
 
 uniqueRef=[];
 for i=1:size(uniquePoints,1)
-    pos = find(ismemberf(vxy(:,1:2),uniquePoints(i,1:2),'rows', 'tol',param.tol));
+    pos = find(ismemberf(vxy(:,1:2),uniquePoints(i,1:2),'row', 'tol',param.tol));
     if ~isempty(pos)
         uniqueRef=[uniqueRef; uniquePoints(i,1:2)  vxy(pos,3:4)];
     end
-    pos = find(ismemberf(vxy(:,3:4),uniquePoints(i,1:2),'rows', 'tol', param.tol));
+    pos = find(ismemberf(vxy(:,3:4),uniquePoints(i,1:2),'row', 'tol', param.tol));
     if ~isempty(pos)
         uniqueRef=[uniqueRef; uniquePoints(i,1:2)  vxy(pos,1:2)];
     end

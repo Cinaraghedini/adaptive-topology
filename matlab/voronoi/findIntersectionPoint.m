@@ -21,7 +21,22 @@ for i=1:size(seedPoints,1)
     fx(i,:)=polyfit(x,y,1); 
     
     % compute the distance between the point and the possible points
-    d(i,:)=pdist([seedPoints(i,:); posPoint],'euclidean'); 
+%    try
+      d(i,:)=pdist(real([seedPoints(i,:); posPoint]),'euclidean');
+  %      d(i,:)=pdist([seedPoints(i,:); posPoint],'euclidean');
+    
+       % disp(seedPoints(i,:))
+       % disp(posPoint)
+ %   catch
+ %       disp('a')
+ %    
+ %       disp(real([seedPoints(i,:); posPoint]))
+ %       disp([seedPoints(i,:); posPoint])
+        
+    
+        % disp(seedPoints(i,:))
+       % disp(posPoint)
+  %  end
 end
 
 % the coefficient are equal for the roots, defines the closest one as

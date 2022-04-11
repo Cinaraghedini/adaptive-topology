@@ -28,7 +28,7 @@ evaluatedPoints=[];
 distP1_P2_evaluated=[];
 
 posPredecessor=find(ismemberf(uniqueRef(:,3:4),predecessorInf,'row', 'tol', param.tol)); %finds if predecessor of inf is a unique point
-posSuccessor=find(ismemberf(uniqueRef(:,3:4),successorInf,'rows', 'tol', param.tol)); %finds if successor of inf is a unique point
+posSuccessor=find(ismemberf(uniqueRef(:,3:4),successorInf,'row', 'tol', param.tol)); %finds if successor of inf is a unique point
 for ii=1:size(posPredecessor,1)
     refP1=uniqueRef(posPredecessor(ii),1:2); % set uniqueRef predecessor as the predecessor of inf  
     for k=1:size(posSuccessor,1)

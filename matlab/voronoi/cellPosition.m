@@ -14,7 +14,7 @@ function [V posVertex] = cellPosition(V,newVertex,param)
 
 new=true;
 if ~isempty(V)
-    [~,indx]=ismemberf(newVertex,V,'rows', 'tol', param.tol);
+    [~,indx]=ismemberf(newVertex,V,'row', 'tol', param.tol);
     if indx>0      
         posVertex=indx;
         new=false;
